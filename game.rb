@@ -55,12 +55,11 @@ class Game
 
   def choose_piece
     puts "choose row"
-    row = gets.chomp
+    row = gets.chomp.to_i
     puts "choose column"
-    column = gets.chomp
-    @from = [row, column]
+    column = gets.chomp.to_i
     @pieces.each do |piece|
-      if piece.row === @from[0].to_i && piece.column === @from[1].to_i
+      if piece.row.to_i === row && piece.column.to_i === column
         return piece
       end
     end

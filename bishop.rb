@@ -4,7 +4,7 @@ class Bishop < Piece
     super
   end
 
-  def self.legal
+  def legal(piece_instance, coords)
     return true
   end
 end

@@ -13,29 +13,34 @@ class Piece
 
   def move(coords)
     if piece_legal_controller(coords)
-      @row = coords[0]
-      @column = coords[1]
+      @row = coords[0].to_i
+      @column = coords[1].to_i
     else
       puts "Illegal Move!"
     end
   end
-  
+
+  private
+
   def piece_legal_controller(coords)
-    case self.type
+    @piece = self
+    
+    case @piece.type
       when "P "
-        Pawn.legal(coords)
+        # puts @piece
+        @piece.legal(@piece, coords)
       when "R "
-        Rook.legal
+        @piece.legal(@piece, coords)
       when "H "
-        Knight.legal
+        @piece.legal(@piece, coords)
       when "R "
-        Rook.legal
+        @piece.legal(@piece, coords)
       when "B "
-        Bishop.legal
+        @piece.legal(@piece, coords)
       when "Q "
-        Queen.legal
+        @piece.legal(@piece, coords)
       when "K "
-        King.legal 
+        @piece.legal(@piece, coords)
     end
   end
 end
