@@ -11,19 +11,19 @@ class Piece
     ObjectSpace.each_object(self).to_a
   end
 
-  def move(square)
-    if piece_legal_controller
-      @row = square[0]
-      @column = square[1]
+  def move(coords)
+    if piece_legal_controller(coords)
+      @row = coords[0]
+      @column = coords[1]
     else
       puts "Illegal Move!"
     end
   end
   
-  def piece_legal_controller
+  def piece_legal_controller(coords)
     case self.type
       when "P "
-        Pawn.legal
+        Pawn.legal(coords)
       when "R "
         Rook.legal
       when "H "
