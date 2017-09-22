@@ -34,17 +34,19 @@ class Piece
 ####
   def occupied?(coords)
     @piece = self
-    puts @piece.color
+    #puts @piece.color
     @pieces = Piece.all
     # loop through all pieces to find any in move coords
     @pieces.each do |piece|
      # puts piece
-      puts coords[0].to_i
-      puts piece.row.to_i
+      #puts coords[0].to_i
+      #puts piece.row.to_i
       if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
+        puts "occupied"
         return true
       end
     end
+    puts "not occupied"
     return false
   end
 
