@@ -15,8 +15,10 @@ class Piece
     if piece_legal_controller(coords)
       @row = coords[0].to_i
       @column = coords[1].to_i
+      return true
     else
-      puts "Illegal Move!"
+      # puts "Illegal Move!"
+      return false
     end
   end
 

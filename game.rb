@@ -14,7 +14,7 @@ class Game
     build_pieces
     @pieces = Piece.all
     Board.new(@pieces)
-    puts "blacks turn"
+    #b.show
     game_loop
     # show_single_key while(true)
   end
@@ -46,11 +46,35 @@ class Game
 
   def game_loop
     until win?
+      who = turn(who)
+      puts "#{ who } turn"
       @piece = choose_piece
       @move = choose_square
-      @piece.move(@move)
+      if @piece.move(@move)
+        @piece.move(@move)
+      else
+        puts "Illegal Move!"
+        who = "illegal"
+      end
       Board.new(@pieces)
     end
+  end
+
+  def turn(who) 
+    case who
+      when who == nil
+        who = "blacks"
+      when who == "blacks"
+        who = "whites"
+      when who == "whites"
+        who = "blacks"
+      when who == "illegal"
+        who = @prev
+      else
+        puts "error in game.rb turn def"
+    end
+    @prev = who #black
+    return who
   end
 
   def choose_piece
