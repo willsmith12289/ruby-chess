@@ -29,6 +29,25 @@ class Piece
     end
   end
 
+#################################
+# Loops through all pieces to determine if desired coords are occupied
+####
+  def occupied?(coords)
+    @piece = self
+    puts @piece.color
+    @pieces = Piece.all
+    # loop through all pieces to find any in move coords
+    @pieces.each do |piece|
+     # puts piece
+      puts coords[0].to_i
+      puts piece.row.to_i
+      if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
+        return true
+      end
+    end
+    return false
+  end
+
   private
 
 #################################
@@ -36,8 +55,11 @@ class Piece
 ####
   def piece_legal_controller(coords)
     @piece = self
-    # calls occupied to determine if desired coords are open
-    if occupied?(coords)
+    # # calls occupied to determine if desired coords are open
+    # if occupied?(coords)
+    #   dead_piece = occupied?(coords)
+    #   color_check(dead_piece)
+    # else
       case @piece.type
         when "P "
           # puts @piece
@@ -55,41 +77,22 @@ class Piece
         when "K "
           @piece.legal(@piece, coords)
       end
-    else
-      return false
-    end
   end
 
-#################################
-# Loops through all pieces to determine if desired coords are occupied
-####
-  def occupied?(coords)
-    @piece = self
-    @pieces = Piece.all
-    # loop through all pieces to find any in move coords
-    @pieces.each do |piece|
-      if piece.row.to_i === coords[0].to_i && piece.column.to_i === coords[1].to_i
-
-      #this set to piece in occupied coords and color matched
-        this = piece
-        color_check
-        if this.color === @piece.color
-          return false
-        elsif this.color != @piece.color
-          puts "attack!"
-          attack(this)
-        end
-        return true
-      end
-    end
-  end
 
 #################################
 # Removes opposing piece
 # switches its coords with its own
 ####
 def color_check(piece)
-  
+  if piece.color === self.color
+    puts "cant attack same color"
+    return false
+  elsif piece.color != self.color
+    puts "attack!"
+    attack(piece)
+    return true
+  end
 end
 #################################
 # Removes opposing piece
