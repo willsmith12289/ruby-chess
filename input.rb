@@ -1,6 +1,9 @@
 module Input
 require 'io/console'
 
+#################################
+#
+####
   def read_char
     STDIN.echo = false
     STDIN.raw!
@@ -17,6 +20,9 @@ require 'io/console'
   return input
   end
 
+#################################
+#
+####
   def show_single_key
     c = read_char
 
@@ -47,6 +53,9 @@ require 'io/console'
     end
   end
 
+#################################
+#
+####
   def method_name
     
   end

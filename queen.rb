@@ -4,6 +4,9 @@ class Queen < Piece
     super
   end
 
+#################################
+#
+####
   def legal(piece_instance, coords)
     return true
   end

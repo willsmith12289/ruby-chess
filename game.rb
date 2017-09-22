@@ -60,12 +60,14 @@ class Game
       @piece = choose_piece
       @move = choose_square
       if @piece.move(@move)
-        @piece.move(@move)
+        Board.new(@pieces)
+      elsif @piece.attack
+        puts @pieces
+        Board.new(@pieces)
       else
         puts "Illegal Move!"
         who = "illegal"
       end
-      Board.new(@pieces)
     end
   end
 

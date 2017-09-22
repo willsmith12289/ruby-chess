@@ -3,7 +3,10 @@ class King < Piece
   def initialize(row, column, color, type="K ")
     super
   end
-  
+ 
+#################################
+#
+#### 
   def legal(piece_instance, coords)
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
