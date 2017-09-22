@@ -19,6 +19,9 @@ class Game
     # show_single_key while(true)
   end
 
+#################################
+# Builds each piece and assigns it color and starting coords
+####
   def build_pieces
     (0..7).each do |i|
       Pawn.new(1, i, "white") 
@@ -44,6 +47,12 @@ class Game
       Rook.new(7, 7, "black")
   end
 
+#################################
+# Loops until win = true
+# chooses piece, then desired move
+# checks legality
+# redraws board
+####
   def game_loop
     until win?
       who = turn(who)
@@ -60,23 +69,26 @@ class Game
     end
   end
 
+#################################
+# Determines which players turn is up
+####
   def turn(who) 
-    case who
-      when who == nil
-        who = "blacks"
-      when who == "blacks"
-        who = "whites"
-      when who == "whites"
-        who = "blacks"
-      when who == "illegal"
-        who = @prev
-      else
-        puts "error in game.rb turn def"
+    if who == nil
+      who = "blacks"
+    elsif who == "blacks"
+      who = "whites"
+    elsif who == "whites"
+      who = "blacks"
+    elsif who == "illegal"
+      who = @prev
     end
     @prev = who #black
     return who
   end
 
+#################################
+# Grabs piece based on input coords
+####
   def choose_piece
     puts "choose row"
     row = gets.chomp.to_i
@@ -89,6 +101,9 @@ class Game
     end
   end
 
+#################################
+# Grabs move coords based on input coords
+####
   def choose_square
     puts "choose row"
     row = gets.chomp
@@ -98,6 +113,9 @@ class Game
     return @to
   end
 
+#################################
+# determines if either player won, temp set to false
+####
   def win?
     false
   end
