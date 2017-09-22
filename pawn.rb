@@ -5,6 +5,9 @@ class Pawn < Piece
     @first = true
   end
 
+#################################
+#
+####
   def legal(piece_instance, coords)
     @first_black = [piece_instance.row.to_i-2, piece_instance.column.to_i]
     @first_white = [piece_instance.row.to_i+2, piece_instance.column.to_i]
@@ -56,9 +59,12 @@ class Pawn < Piece
     end
   end
 
-  def attack?(piece_instance)
-    @coords_x = coords[0].to_i
-    @coords_y = coords[1].to_i
-  end
+#################################
+#
+####
+  # def attack(attacked_)
+  #   @coords_x = coords[0].to_i
+  #   @coords_y = coords[1].to_i
+  # end
 
 end
