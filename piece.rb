@@ -23,10 +23,11 @@ class Piece
     if piece_legal_controller(coords)
       @row = coords[0].to_i
       @column = coords[1].to_i
-      return true
+      #return true
     else
       return false
     end
+
   end
 
 #################################
@@ -43,13 +44,47 @@ class Piece
       #puts piece.row.to_i
       if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
         puts "occupied"
-        return true
+        occupied = color_check(piece)
+        return occupied
+        #return true
       end
     end
     puts "not occupied"
     return false
   end
 
+#################################
+# Removes opposing piece
+# switches its coords with its own
+####
+
+def attack(dead_piece)
+  #puts dead_piece.row
+  #puts dead_piece.column
+  #dead_piece = nil
+  @row = dead_piece.row.to_i
+  @column = dead_piece.column.to_i
+  @pieces = Piece.all
+  @pieces.delete_if { |e| e == dead_piece }
+  
+  #Board.new(@pieces)
+  return true
+end
+
+#################################
+# Removes opposing piece
+# switches its coords with its own
+####
+def color_check(piece)
+  if piece.color === self.color
+    puts "cant attack same color"
+    return false
+  elsif piece.color != self.color
+    return attack(piece)
+    puts "attack!"
+    # return true
+  end
+end
   private
 
 #################################
@@ -81,48 +116,4 @@ class Piece
       end
   end
 
-
-#################################
-# Removes opposing piece
-# switches its coords with its own
-####
-def color_check(piece)
-  if piece.color === self.color
-    puts "cant attack same color"
-    return false
-  elsif piece.color != self.color
-    puts "attack!"
-    attack(piece)
-    return true
-  end
-end
-#################################
-# Removes opposing piece
-# switches its coords with its own
-####
-
-def attack(dead_piece)
-  puts dead_piece.color
-  @pieces = Piece.all
-  @pieces.delete_if { |e| e == dead_piece }
-  puts @pieces
-  #return true
-#   case @piece.type
-  #   when "P "
-  #     # puts @piece
-  #     @piece.attack(@piece, dead_piece)
-  #   when "R "
-  #     @piece.attack(@piece, dead_piece)
-  #   when "H "
-  #     @piece.attack(@piece, dead_piece)
-  #   when "R "
-  #     @piece.attack(@piece, dead_piece)
-  #   when "B "
-  #     @piece.attack(@piece, dead_piece)
-  #   when "Q "
-  #     @piece.attack(@piece, dead_piece)
-  #   when "K "
-  #     @piece.attack(@piece, dead_piece)
-  # end
-end
 end

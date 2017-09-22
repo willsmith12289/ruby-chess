@@ -81,7 +81,9 @@ class Pawn < Piece
         # if columns are only dif by + or - 1
         elsif (this.column.to_i - coords[1].to_i).abs == 1
           # if space is occupied return true
-          return this.occupied?(coords)
+          occupied = this.occupied?(coords)
+          puts occupied
+          return occupied
           #   puts "occupied"
           #   return true
           # end
