@@ -56,13 +56,11 @@ class Game
   def game_loop
     until win?
       who = turn(who)
-      puts "#{ who } turn"
+      puts "#{ who }'s turn"
       @piece = choose_piece
       @move = choose_square
-      if @piece.move(@move)
-        Board.new(@pieces)
-      elsif @piece.attack
-        puts @pieces
+      if @piece.move(@move, who)
+        @pieces = Piece.all
         Board.new(@pieces)
       else
         puts "Illegal Move!"
@@ -76,11 +74,11 @@ class Game
 ####
   def turn(who) 
     if who == nil
-      who = "blacks"
-    elsif who == "blacks"
-      who = "whites"
-    elsif who == "whites"
-      who = "blacks"
+      who = "black"
+    elsif who == "black"
+      who = "white"
+    elsif who == "white"
+      who = "black"
     elsif who == "illegal"
       who = @prev
     end

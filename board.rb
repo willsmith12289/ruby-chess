@@ -73,8 +73,10 @@ class Board
             y = piece.column.to_i
           if piece.color == "white" 
             chess_board[x][y] = piece.type.colorize(:color => :white)
-          else
+          elsif piece.color == "black" 
             chess_board[x][y] = piece.type.colorize(:color => :black)
+          else
+            next
           end
         end
         chess_board

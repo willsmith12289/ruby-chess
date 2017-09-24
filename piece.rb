@@ -19,11 +19,16 @@ class Piece
 #################################
 # Changes row and column of piece instance if move is legal
 ####
-  def move(coords)
+  def move(coords, who)
     if piece_legal_controller(coords)
-      @row = coords[0].to_i
-      @column = coords[1].to_i
-      #return true
+      if self.color == who
+        @row = coords[0].to_i
+        @column = coords[1].to_i
+      else
+        puts who
+        puts "not you turn"
+        return false
+      end
     else
       return false
     end
@@ -34,40 +39,26 @@ class Piece
 # Loops through all pieces to determine if desired coords are occupied
 ####
   def occupied?(coords)
-    @piece = self
-    #puts @piece.color
     @pieces = Piece.all
     # loop through all pieces to find any in move coords
     @pieces.each do |piece|
-     # puts piece
-      #puts coords[0].to_i
-      #puts piece.row.to_i
       if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
-        puts "occupied"
         occupied = color_check(piece)
         return occupied
-        #return true
       end
     end
-    puts "not occupied"
-    return false
   end
 
 #################################
 # Removes opposing piece
 # switches its coords with its own
 ####
-
 def attack(dead_piece)
-  #puts dead_piece.row
-  #puts dead_piece.column
-  #dead_piece = nil
-  @row = dead_piece.row.to_i
-  @column = dead_piece.column.to_i
-  @pieces = Piece.all
-  @pieces.delete_if { |e| e == dead_piece }
-  
-  #Board.new(@pieces)
+  dead_piece.row = nil
+  dead_piece.column = nil
+  dead_piece.color = nil
+  dead_piece.type = nil
+  dead_piece = nil
   return true
 end
 

@@ -10,4 +10,5 @@ class Queen < Piece
   def legal(piece_instance, coords)
     return true
   end
+
 end

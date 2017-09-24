@@ -16,4 +16,5 @@ class Rook < Piece
       return false
     end
   end
+
 end
