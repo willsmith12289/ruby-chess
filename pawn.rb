@@ -33,7 +33,7 @@ class Pawn < Piece
   def first_move(coords, distance)
     # sets @first to false so it can never move twice again
     @first = false
-    if distance.abs == 2 || 1
+    if distance.abs == 2
       return true
     else
       return false

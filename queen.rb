@@ -10,7 +10,21 @@ class Queen < Piece
 # cant jump
 ####
   def legal(this, coords)
-    return true
+    start = [this.row.to_i, this.column.to_i]
+    piece_location = obstruction?(start, coords)
+    if piece_location == coords
+      puts "location = coords"
+      occupied = this.occupied?(coords)
+      return occupied
+    # if location of obstruction returned false, move piece
+    elsif !piece_location
+      puts "false"
+      occupied = this.occupied?(coords)
+      return occupied
+    else
+      puts "piece in the way"
+      return false
+    end
   end
 
 end
