@@ -6,19 +6,17 @@ class Knight < Piece
 
 #################################
 # Legal knight moves
+# Moves in l formation 2 by 1 squares
 ####
   def legal(this, coords)
-    row = this.row.to_i
-    column = this.column.to_i
-    @moves = Array.new()
-    @moves << [row-2, column+1]
-    @moves << [row-2, column-1]
-    @moves << [row+2, column+1]
-    @moves << [row+2, column-1]
-    @moves << [row+2, column-1]
-    @moves << [row+2, column+1]
-    @moves << [row-2, column-1]
-    @moves << [row-2, column+1]
+    # row = this.row.to_i
+    # column = this.column.to_i
+    offsets = [ [1, 2], [-1, 2], [1, -2], [-1, -2], [2, 1], [-2, 1], [2, -1], [-2, -1] ]
+    @moves = []
+    offsets.each do |offset|
+      move = [@row+offset[0], @column+offset[1]]
+      @moves << move
+    end
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
     #loop through possible moves

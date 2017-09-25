@@ -6,6 +6,8 @@ class Queen < Piece
 
 #################################
 # Checks legality of Queens moves
+# Can move forward back side diagonal as many as possible
+# cant jump
 ####
   def legal(this, coords)
     return true

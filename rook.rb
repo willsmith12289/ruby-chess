@@ -6,6 +6,8 @@ class Rook < Piece
 
 #################################
 # Checks legality of rooks moves
+# Moves horizontally/vertically as many spaces as wants
+# cant jump pieces
 ####
   def legal(this, coords)
     row = this.row.to_i

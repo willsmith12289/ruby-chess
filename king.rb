@@ -6,7 +6,7 @@ class King < Piece
  
 #################################
 # Checks legality of king move coords
-# loops through possible moves to see if contains move coords 
+# any direction 1 space
 #### 
   def legal(this, coords)
     row_dist = (this.row.to_i - coords[0].to_i).abs

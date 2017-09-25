@@ -5,7 +5,8 @@ class Bishop < Piece
   end
 
 #################################
-#
+# Can move diagonally as many spaces as wants
+# cant jump pieces
 ####
   def legal(this, coords)
     @coords_x = coords[0].to_i
