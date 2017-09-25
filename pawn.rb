@@ -1,3 +1,6 @@
+#################################
+# 
+####
 class Pawn < Piece
   attr_accessor :row, :column, :color, :type, :first
   def initialize(row, column, color, type="P ")

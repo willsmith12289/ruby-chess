@@ -10,6 +10,12 @@ class Piece
   end
 
 #################################
+# defines Offsets
+####
+  diagonal = [[1, 1], [-1, 1], [1, -1], [-1, -1] ]
+  horizontal_vertical = [[1, 0], [-1, 0], [0, 1],  [0, -1]  ]
+
+#################################
 # Allows calling of Piece.all outside of Piece class
 ####
   def self.all
@@ -46,6 +52,8 @@ class Piece
         # return result of color_check -> attack -> t/f
         occupied = color_check(piece)
         return occupied
+      else
+        return false
       end
     end
     # puts "not occupied"
@@ -78,12 +86,17 @@ def color_check(piece)
     return attack(piece)
   end
 end
+#################################
+# Make sure given position is on board
+####
+  def position_in_bounds?(coords)
+    coords[0].between?(0,7) && coords[1].between?(0,7)
+  end
 
 
 #################################
 # Check for obstruction in path of piece
 # determine if vertical, horizontal, or diagonal move
-# 
 ####
   def obstruction(start, destination)
     
