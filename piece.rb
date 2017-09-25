@@ -47,6 +47,8 @@ class Piece
         return occupied
       end
     end
+    puts "not occupied"
+    return false
   end
 
 #################################
@@ -54,11 +56,13 @@ class Piece
 # switches its coords with its own
 ####
 def attack(dead_piece)
+  print dead_piece
+  puts dead_piece.color
   dead_piece.row = nil
   dead_piece.column = nil
   dead_piece.color = nil
   dead_piece.type = nil
-  dead_piece = nil
+  #dead_piece = nil
   return true
 end
 
@@ -67,12 +71,14 @@ end
 # switches its coords with its own
 ####
 def color_check(piece)
+  puts "color_check"
   if piece.color === self.color
     puts "cant attack same color"
     return false
   elsif piece.color != self.color
-    return attack(piece)
     puts "attack!"
+    return attack(piece)
+    
     # return true
   end
 end
@@ -82,28 +88,35 @@ end
 # Check legality according to piece type
 ####
   def piece_legal_controller(coords)
-    @piece = self
+    # @piece = self
+    # puts @piece.type
     # # calls occupied to determine if desired coords are open
     # if occupied?(coords)
     #   dead_piece = occupied?(coords)
     #   color_check(dead_piece)
     # else
-      case @piece.type
+      case self.type
         when "P "
-          # puts @piece
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "R "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "H "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "R "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "B "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "Q "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
         when "K "
-          @piece.legal(@piece, coords)
+          puts self.type
+          self.legal(self, coords)
       end
   end
 

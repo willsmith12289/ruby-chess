@@ -90,12 +90,15 @@ class Game
 # Grabs piece based on input coords
 ####
   def choose_piece
-    puts "choose row"
+    puts "choose piece row"
     row = gets.chomp.to_i
-    puts "choose column"
+    puts "choose piece column"
     column = gets.chomp.to_i
+    @pieces = Piece.all
     @pieces.each do |piece|
-      if piece.row.to_i === row && piece.column.to_i === column
+      if piece.row.to_i == row && piece.column.to_i == column
+        print piece
+        puts piece.color
         return piece
       end
     end
@@ -105,9 +108,9 @@ class Game
 # Grabs move coords based on input coords
 ####
   def choose_square
-    puts "choose row"
+    puts "choose move row"
     row = gets.chomp
-    puts "choose column"
+    puts "choose move column"
     column = gets.chomp
     @to = [row, column]
     return @to
