@@ -85,8 +85,29 @@ end
 # determine if vertical, horizontal, or diagonal move
 # 
 ####
-  def obstruction(start, destination)
-    
+  def obstruction?(start, destination)
+    # returns -1, 1, 0 depending on value of left relative to right
+    direction_x = destination[0].to_i <=> start[0].to_i
+    direction_y = destination[1].to_i <=> start[1].to_i
+    row_dist = (start[0].to_i - destination[0].to_i).abs
+    col_dist = (start[1].to_i - destination[1].to_i).abs
+    # finds greater distance either row or column and loops through
+    steps = [row_dist, col_dist].max
+    (1...steps).each do |step|
+      #increments x and y by the comparison <=>
+      x = start[0].to_i + step * direction_x
+      y = start[1].to_i + step * direction_y
+      #loops pieces to see if exist in incremented row col above
+      @pieces = Piece.all
+      @pieces.each do |piece|
+        if piece.row.to_i == x && piece.column.to_i == y
+          # returns the [row, column] for piece in the way
+          return [piece.row.to_i, piece.column.to_i]
+        else
+          return false
+        end
+      end
+    end
   end
   private
 
@@ -98,7 +119,7 @@ end
         when "P "
           self.legal(self, coords)
         when "R "
-          self.legal(self, coords)
+          self.legal(coords)
         when "H "
           self.legal(self, coords)
         when "R "
