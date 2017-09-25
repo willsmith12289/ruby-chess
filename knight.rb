@@ -1,19 +1,8 @@
-#################################
-# Move forms an "L"-shape, 2 square by one square
-# Can jump other pieces
-####
 class Knight < Piece
   attr_accessor :row, :column, :color, :type
   def initialize(row, column, color, type="H ")
     super
   end
-
-#################################
-# defines Offsets
-####
-  # def offsets
-  #   [ [1, 2], [-1, 2], [1, -2], [-1, -2], [2, 1], [-2, 1], [2, -1], [-2, -1] ]
-  # end
 
 #################################
 # Legal knight moves
