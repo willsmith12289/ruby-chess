@@ -103,11 +103,10 @@ end
         if piece.row.to_i == x && piece.column.to_i == y
           # returns the [row, column] for piece in the way
           return [piece.row.to_i, piece.column.to_i]
-        else
-          return false
         end
       end
     end
+    return false
   end
   private
 
@@ -119,7 +118,7 @@ end
         when "P "
           self.legal(self, coords)
         when "R "
-          self.legal(coords)
+          self.legal(self, coords)
         when "H "
           self.legal(self, coords)
         when "R "

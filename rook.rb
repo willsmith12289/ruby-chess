@@ -13,10 +13,10 @@ class Rook < Piece
 # Moves horizontally/vertically as many spaces as wants
 # cant jump pieces
 ####
-  def legal(coords)
-    row = @row.to_i
-    column = @column.to_i
-    start = [@row.to_i, @column.to_i]
+  def legal(this, coords)
+    row = this.row.to_i
+    column = this.column.to_i
+    start = [row, column]
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
     # legal if piece remains in same row or column 
@@ -25,10 +25,12 @@ class Rook < Piece
       piece_location = obstruction?(start, coords)
       # if location of obstruction is desired space, attack
       if piece_location == coords
+        puts "location = coords"
         occupied = this.occupied?(coords)
         return occupied
       # if location of obstruction returned false, move piece
       elsif !piece_location
+        puts "false"
         occupied = this.occupied?(coords)
         return occupied
       else
