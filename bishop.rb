@@ -11,14 +11,26 @@ class Bishop < Piece
   def legal(this, coords)
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
-
+    start = [this.row.to_i, this.column.to_i]
     possible_moves(this)
     puts "possible_moves"
     if this.row.to_i == @coords_x || this.column.to_i == @coords_y
       return false
     else
-      occupied = this.occupied?(coords)
-      return occupied
+      piece_location = obstruction?(start, coords)
+      if piece_location == coords
+        puts "location = coords"
+        occupied = this.occupied?(coords)
+        return occupied
+      # if location of obstruction returned false, move piece
+      elsif !piece_location
+        puts "false"
+        occupied = this.occupied?(coords)
+        return occupied
+      else
+        puts "piece in the way"
+        return false
+      end
     end
   end
 
