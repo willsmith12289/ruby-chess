@@ -5,7 +5,8 @@ class King < Piece
   end
  
 #################################
-#
+# Creates possible moves array
+# adds all possible moves to it
 #### 
   def moves(this)
     row = this.row.to_i
@@ -22,7 +23,8 @@ class King < Piece
   end
 
 #################################
-#
+# Checks legality of king move coords
+# loops through possible moves to see if contains move coords 
 #### 
   def legal(this, coords)
     @coords_x = coords[0].to_i
@@ -42,18 +44,16 @@ class King < Piece
 #################################
 #
 #### 
-  def check
-    if 
-  end
+  # def check
+  #   if 
+  # end
 
 #################################
 #
 #### 
-  def check_mate
-    @moves = moves(self)
-    @moves.each do |move|
-
-    end
-  end
+  # def check_mate
+  #   @moves = moves(self)
+  #   @moves.each do |move|
+  # end
 
 end

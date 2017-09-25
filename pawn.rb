@@ -9,15 +9,12 @@ class Pawn < Piece
 # Determines in Pawns move is legal
 ####
   def legal(this, coords)
+    # How far piece moved from start position to end position
     distance_row = this.row.to_i - coords[0].to_i
-    # if first can move 2 forward
+    # if @first =  true call first_move method
     if @first
-      @first = false
-      if distance_row.abs == 2 || 1
-        return true
-      else
-        return false
-      end
+      # steps for pawns first move
+      first_move(coords, distance_row)
     else
       if this.color == "black" && distance_row == 1
         legal_column(this, coords)
@@ -31,15 +28,29 @@ class Pawn < Piece
   end
 
 #################################
+# Steps for pawns first move
+####
+  def first_move(coords, distance)
+    # sets @first to false so it can never move twice again
+    @first = false
+    if distance.abs == 2 || 1
+      return true
+    else
+      return false
+    end
+  end
+
+#################################
 # Checks if pawns move coords are in proper column or occupied
 ####
   def legal_column(this, coords)
+    # # of columns moved from start position to end position
     distance_col = (this.column.to_i - coords[1].to_i).abs
-    if this.column.to_i == coords[1].to_i
+    if this.column.to_i == coords[1].to_i #same column
       return true
     elsif distance_col == 1
+      #checks if its occupied
       occupied = this.occupied?(coords)
-      #puts occupied
       return occupied
     else
       puts "columns != && not occupied"

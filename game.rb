@@ -49,6 +49,7 @@ class Game
 
 #################################
 # Loops until win = true
+# sets who to result of calling turn
 # chooses piece, then desired move
 # checks legality
 # redraws board
@@ -87,7 +88,7 @@ class Game
   end
 
 #################################
-# Grabs piece based on input coords
+# Loops through all pieces and matches them with input coords
 ####
   def choose_piece
     puts "choose piece row"
@@ -97,8 +98,6 @@ class Game
     @pieces = Piece.all
     @pieces.each do |piece|
       if piece.row.to_i == row && piece.column.to_i == column
-        print piece
-        puts piece.color
         return piece
       end
     end

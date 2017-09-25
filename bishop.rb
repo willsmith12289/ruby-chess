@@ -7,16 +7,17 @@ class Bishop < Piece
 #################################
 #
 ####
-  def legal(piece_instance, coords)
+  def legal(this, coords)
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
 
-    possible_moves(piece_instance)
+    possible_moves(this)
     puts "possible_moves"
-    if piece_instance.row.to_i === @coords_x || piece_instance.column.to_i === @coords_y
+    if this.row.to_i == @coords_x || this.column.to_i == @coords_y
       return false
     else
-      return true
+      occupied = this.occupied?(coords)
+      return occupied
     end
   end
 
@@ -31,10 +32,10 @@ class Bishop < Piece
           row += 1
           column += 1
           move = [row, column]
-          puts "row"
-          puts row
-          puts "column"        
-          puts column
+          # puts "row"
+          # puts row
+          # puts "column"        
+          # puts column
           @moves << move
       end
   end

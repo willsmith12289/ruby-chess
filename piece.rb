@@ -19,13 +19,14 @@ class Piece
 #################################
 # Changes row and column of piece instance if move is legal
 ####
-  def move(coords, who)
+  def move(coords, whos_turn)
     if piece_legal_controller(coords)
-      if self.color == who
+      # check to make sure the correct player is going
+      if self.color == whos_turn
+        #set row and column to move destination coords
         @row = coords[0].to_i
         @column = coords[1].to_i
       else
-        puts who
         puts "not you turn"
         return false
       end
@@ -42,6 +43,7 @@ class Piece
     # loop through all pieces to find any in move coords
     @pieces.each do |piece|
       if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
+        # return result of color_check -> attack -> t/f
         occupied = color_check(piece)
         return occupied
       end
@@ -51,36 +53,41 @@ class Piece
   end
 
 #################################
-# Removes opposing piece
-# switches its coords with its own
+# Removes opposing piece by setting all attributes = nil
+# Returns true to color_check -> occupied -> move
 ####
 def attack(dead_piece)
-  print dead_piece
-  puts dead_piece.color
   dead_piece.row = nil
   dead_piece.column = nil
   dead_piece.color = nil
   dead_piece.type = nil
-  #dead_piece = nil
   return true
 end
 
 #################################
-# Removes opposing piece
-# switches its coords with its own
+# Checks color of occupying piece against own
+# Calls attack if color is different
+# returns t/f to occupied -> move
 ####
 def color_check(piece)
-  puts "color_check"
   if piece.color === self.color
     puts "cant attack same color"
     return false
   elsif piece.color != self.color
     puts "attack!"
     return attack(piece)
-    
-    # return true
   end
 end
+
+
+#################################
+# Check for obstruction in path of piece
+# determine if vertical, horizontal, or diagonal move
+# 
+####
+  def obstruction(start, destination)
+    
+  end
   private
 
 #################################
@@ -89,25 +96,18 @@ end
   def piece_legal_controller(coords)
       case self.type
         when "P "
-          puts self.type
           self.legal(self, coords)
         when "R "
-          puts self.type
           self.legal(self, coords)
         when "H "
-          puts self.type
           self.legal(self, coords)
         when "R "
-          puts self.type
           self.legal(self, coords)
         when "B "
-          puts self.type
           self.legal(self, coords)
         when "Q "
-          puts self.type
           self.legal(self, coords)
         when "K "
-          puts self.type
           self.legal(self, coords)
       end
   end
