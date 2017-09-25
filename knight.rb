@@ -5,12 +5,11 @@ class Knight < Piece
   end
 
 #################################
-#
+# Legal knight moves
 ####
   def legal(this, coords)
     row = this.row.to_i
     column = this.column.to_i
-    #possible legal moves
     @moves = Array.new()
     @moves << [row-2, column+1]
     @moves << [row-2, column-1]

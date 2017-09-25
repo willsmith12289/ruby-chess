@@ -7,11 +7,14 @@ class Rook < Piece
 #################################
 #
 ####
-  def legal(piece_instance, coords)
+  def legal(this, coords)
+    row = this.row.to_i
+    column = this.column.to_i
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
-    if piece_instance.row.to_i === @coords_x || piece_instance.column.to_i === @coords_y
-      return true
+    if row === @coords_x || column === @coords_y
+      occupied = this.occupied?(coords)
+      return occupied
     else
       return false
     end

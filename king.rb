@@ -7,23 +7,53 @@ class King < Piece
 #################################
 #
 #### 
-  def legal(piece_instance, coords)
+  def moves(this)
+    row = this.row.to_i
+    column = this.column.to_i
+    poss_moves = Array.new()
+    poss_moves << [row+1, column]
+    poss_moves << [row-1, column]
+    poss_moves << [row, column-1]
+    poss_moves << [row, column+1]
+    poss_moves << [row+1, column+1]
+    poss_moves << [row-1, column+1]
+    poss_moves << [row-1, column-1]
+    poss_moves << [row+1, column-1]
+  end
+
+#################################
+#
+#### 
+  def legal(this, coords)
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
-    @moves = Array.new()
-    @moves << [piece_instance.row.to_i+1, piece_instance.column.to_i]
-    @moves << [piece_instance.row.to_i-1, piece_instance.column.to_i]
-    @moves << [piece_instance.row.to_i, piece_instance.column.to_i-1]
-    @moves << [piece_instance.row.to_i-2, piece_instance.column.to_i+1]
-
+    @moves = moves(this)
     @moves.each do |move|
       if @coords_x === move[0].to_i && @coords_y === move[1].to_i
-        return true
+        occupied = this.occupied?(coords)
+        return occupied
       else
         next
       end
     end
     return false
+  end
+
+#################################
+#
+#### 
+  def check
+    if 
+  end
+
+#################################
+#
+#### 
+  def check_mate
+    @moves = moves(self)
+    @moves.each do |move|
+
+    end
   end
 
 end

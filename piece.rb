@@ -32,7 +32,6 @@ class Piece
     else
       return false
     end
-
   end
 
 #################################
@@ -47,8 +46,8 @@ class Piece
         return occupied
       end
     end
-    puts "not occupied"
-    return false
+    # puts "not occupied"
+    # return false
   end
 
 #################################
@@ -88,13 +87,6 @@ end
 # Check legality according to piece type
 ####
   def piece_legal_controller(coords)
-    # @piece = self
-    # puts @piece.type
-    # # calls occupied to determine if desired coords are open
-    # if occupied?(coords)
-    #   dead_piece = occupied?(coords)
-    #   color_check(dead_piece)
-    # else
       case self.type
         when "P "
           puts self.type
