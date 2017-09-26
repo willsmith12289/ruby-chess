@@ -12,23 +12,9 @@ class Queen < Piece
   def legal(coords)
     destination_row = coords[0].to_i
     destination_col = coords[1].to_i
-    start = [@row.to_i, @column.to_i]
     if possible_moves.include? [destination_row, destination_col]
       puts "includessss"
-      piece_location = obstruction?(start, coords)
-      if piece_location == coords
-        puts "location = coords"
-        occupied = self.occupied?(coords)
-        return occupied
-      # if location of obstruction returned false, move piece
-      elsif !piece_location
-        puts "false"
-        occupied = self.occupied?(coords)
-        return occupied
-      else
-        puts "piece in the way"
-        return false
-      end
+      attack_or_move(coords)
     else
 
       return false
@@ -40,8 +26,6 @@ class Queen < Piece
 # loop through possible moves, add to array
 ####
   def possible_moves
-    # row = this.row.to_i
-    # column = this.column.to_i
     moves = []
     
     (1..7).each do |x|

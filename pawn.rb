@@ -50,8 +50,7 @@ class Pawn < Piece
       return true
     elsif distance_col == 1
       #checks if its occupied
-      occupied = self.occupied?(coords)
-      return occupied
+      return occupied?(coords)
     else
       puts "columns != && not occupied"
       return false

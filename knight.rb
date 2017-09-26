@@ -19,8 +19,7 @@ class Knight < Piece
     moves.each do |move|
       #if chosen coords = coords in moves array return true
       if coords[0].to_i === move[0].to_i && coords[1].to_i === move[1].to_i
-        occupied = self.occupied?(coords)
-        return occupied
+        return occupied?(coords)
       else
         next
       end
