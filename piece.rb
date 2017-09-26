@@ -24,8 +24,8 @@ class Piece
       # check to make sure the correct player is going
       if self.color == whos_turn
         #set row and column to move destination coords
-        @row = coords[0].to_i
-        @column = coords[1].to_i
+        @row = coords[0]
+        @column = coords[1]
       else
         puts "not you turn"
         return false
@@ -42,7 +42,7 @@ class Piece
     @pieces = Piece.all
     # loop through all pieces to find any in move coords
     @pieces.each do |piece|
-      if piece.row.to_i == coords[0].to_i && piece.column.to_i == coords[1].to_i
+      if piece.row == coords[0] && piece.column == coords[1]
         # return result of color_check -> attack -> t/f
         occupied = color_check(piece)
         return occupied
@@ -87,22 +87,22 @@ end
 ####
   def obstruction?(start, destination)
     # returns -1, 1, 0 depending on value of left relative to right
-    direction_x = destination[0].to_i <=> start[0].to_i
-    direction_y = destination[1].to_i <=> start[1].to_i
-    row_dist = (start[0].to_i - destination[0].to_i).abs
-    col_dist = (start[1].to_i - destination[1].to_i).abs
+    direction_x = destination[0] <=> start[0]
+    direction_y = destination[1] <=> start[1]
+    row_dist = (start[0] - destination[0]).abs
+    col_dist = (start[1] - destination[1]).abs
     # finds greater distance either row or column and loops through
     steps = [row_dist, col_dist].max
     (1...steps).each do |step|
       #increments x and y by the comparison <=>
-      x = start[0].to_i + step * direction_x
-      y = start[1].to_i + step * direction_y
+      x = start[0] + step * direction_x
+      y = start[1] + step * direction_y
       #loops pieces to see if exist in incremented row col above
       @pieces = Piece.all
       @pieces.each do |piece|
-        if piece.row.to_i == x && piece.column.to_i == y
+        if piece.row == x && piece.column == y
           # returns the [row, column] for piece in the way
-          return [piece.row.to_i, piece.column.to_i]
+          return [piece.row, piece.column]
         end
       end
     end
@@ -115,7 +115,7 @@ end
 # handles cases
 ####
   def attack_or_move(coords)
-    start = [@row.to_i, @column.to_i]
+    start = [@row, @column]
     # gets location of obstruction
     piece_location = obstruction?(start, coords)
     # if location of obstruction is desired space, attack
