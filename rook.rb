@@ -14,10 +14,10 @@ class Rook < Piece
 # cant jump pieces
 ####
   def legal(coords)
-    coords_x = coords[0].to_i
-    coords_y = coords[1].to_i
+    coords_x = coords[0]
+    coords_y = coords[1]
     # legal if piece remains in same row or column 
-    if @row.to_i == coords_x || @column.to_i == coords_y
+    if @row == coords_x || @column == coords_y
      attack_or_move(coords)
     else
       return false

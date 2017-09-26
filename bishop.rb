@@ -9,9 +9,9 @@ class Bishop < Piece
 # cant jump pieces
 ####
   def legal(coords)
-    coords_x = coords[0].to_i
-    coords_y = coords[1].to_i
-    if @row.to_i == coords_x || @column.to_i == coords_y
+    coords_x = coords[0]
+    coords_y = coords[1]
+    if @row == coords_x || @column == coords_y
       return false
     else
       attack_or_move(coords)

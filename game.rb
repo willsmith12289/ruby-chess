@@ -98,6 +98,7 @@ class Game
     @pieces = Piece.all
     @pieces.each do |piece|
       if piece.row == row && piece.column == column
+        puts piece
         return piece
       end
     end

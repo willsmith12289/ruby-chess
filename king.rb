@@ -9,13 +9,12 @@ class King < Piece
 # any direction 1 space
 #### 
   def legal(coords)
-    row_dist = (@row.to_i - coords[0].to_i).abs
-    col_dist = (@column.to_i - coords[1].to_i).abs
+    row_dist = (@row - coords[0]).abs
+    col_dist = (@column - coords[1]).abs
     if row_dist > 1 || col_dist > 1
       return false
     else
       return occupied?(coords)
-      
     end
   end
 

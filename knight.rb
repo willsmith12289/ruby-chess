@@ -18,7 +18,7 @@ class Knight < Piece
     #loop through possible moves
     moves.each do |move|
       #if chosen coords = coords in moves array return true
-      if coords[0].to_i === move[0].to_i && coords[1].to_i === move[1].to_i
+      if coords[0] === move[0] && coords[1] === move[1]
         return occupied?(coords)
       else
         next
