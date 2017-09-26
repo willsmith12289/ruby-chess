@@ -12,8 +12,8 @@ class Bishop < Piece
     @coords_x = coords[0].to_i
     @coords_y = coords[1].to_i
     start = [this.row.to_i, this.column.to_i]
-    possible_moves(this)
-    puts "possible_moves"
+    # possible_moves(this)
+    # puts "possible_moves"
     if this.row.to_i == @coords_x || this.column.to_i == @coords_y
       return false
     else
