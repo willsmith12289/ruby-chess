@@ -56,7 +56,7 @@ class Piece
 # Removes opposing piece by setting all attributes = nil
 # Returns true to color_check -> occupied -> move
 ####
-def attack(dead_piece)
+def kill(dead_piece)
   dead_piece.row = nil
   dead_piece.column = nil
   dead_piece.color = nil
@@ -75,7 +75,7 @@ def color_check(piece)
     return false
   elsif piece.color != self.color
     puts "attack!"
-    return attack(piece)
+    return kill(piece)
   end
 end
 
@@ -108,6 +108,32 @@ end
     end
     return false
   end
+
+#################################
+# Called from piece instances legal method
+# calls obstruction? to determine if one exists and where it is
+# handles cases
+####
+  def attack_or_move
+    start = [@row.to_i, @column.to_i]
+    # gets location of obstruction
+    piece_location = obstruction?(start, coords)
+    # if location of obstruction is desired space, attack
+    if piece_location == coords
+      puts "location = coords"
+      occupied = self.occupied?(coords)
+      return occupied
+    # if location of obstruction returned false, move piece
+    elsif !piece_location
+      puts "false"
+      occupied = self.occupied?(coords)
+      return occupied
+    else
+      puts "piece in the way"
+      return false
+    end
+    
+  end
   private
 
 #################################
@@ -116,19 +142,19 @@ end
   def piece_legal_controller(coords)
       case self.type
         when "P "
-          self.legal(self, coords)
+          self.legal(coords)
         when "R "
-          self.legal(self, coords)
+          self.legal(coords)
         when "H "
-          self.legal(self, coords)
+          self.legal(coords)
         when "R "
-          self.legal(self, coords)
+          self.legal(coords)
         when "B "
-          self.legal(self, coords)
+          self.legal(coords)
         when "Q "
-          self.legal(self, coords)
+          self.legal(coords)
         when "K "
-          self.legal(self, coords)
+          self.legal(coords)
       end
   end
 

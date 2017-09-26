@@ -8,13 +8,13 @@ class King < Piece
 # Checks legality of king move coords
 # any direction 1 space
 #### 
-  def legal(this, coords)
-    row_dist = (this.row.to_i - coords[0].to_i).abs
-    col_dist = (this.column.to_i - coords[1].to_i).abs
+  def legal(coords)
+    row_dist = (@row.to_i - coords[0].to_i).abs
+    col_dist = (@column.to_i - coords[1].to_i).abs
     if row_dist > 1 || col_dist > 1
       return false
     else
-      occupied = this.occupied?(coords)
+      occupied = self.occupied?(coords)
       return occupied
     end
   end

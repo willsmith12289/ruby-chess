@@ -8,22 +8,18 @@ class Knight < Piece
 # Legal knight moves
 # Moves in l formation 2 by 1 squares
 ####
-  def legal(this, coords)
-    # row = this.row.to_i
-    # column = this.column.to_i
+  def legal(coords)
     offsets = [ [1, 2], [-1, 2], [1, -2], [-1, -2], [2, 1], [-2, 1], [2, -1], [-2, -1] ]
-    @moves = []
+    moves = []
     offsets.each do |offset|
       move = [@row+offset[0], @column+offset[1]]
-      @moves << move
+      moves << move
     end
-    @coords_x = coords[0].to_i
-    @coords_y = coords[1].to_i
     #loop through possible moves
-    @moves.each do |move|
+    moves.each do |move|
       #if chosen coords = coords in moves array return true
-      if @coords_x === move[0].to_i && @coords_y === move[1].to_i
-        occupied = this.occupied?(coords)
+      if coords[0].to_i === move[0].to_i && coords[1].to_i === move[1].to_i
+        occupied = self.occupied?(coords)
         return occupied
       else
         next
