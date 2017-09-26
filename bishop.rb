@@ -8,31 +8,27 @@ class Bishop < Piece
 # Can move diagonally as many spaces as wants
 # cant jump pieces
 ####
-  def legal(this, coords)
-    @coords_x = coords[0].to_i
-    @coords_y = coords[1].to_i
-
-    possible_moves(this)
-    puts "possible_moves"
-    if this.row.to_i == @coords_x || this.column.to_i == @coords_y
+  def legal(coords)
+    coords_x = coords[0].to_i
+    coords_y = coords[1].to_i
+    if @row.to_i == coords_x || @column.to_i == coords_y
       return false
     else
-      occupied = this.occupied?(coords)
-      return occupied
+      attack_or_move(coords)
     end
   end
 
 #################################
 # loop through possible moves, add to array
 ####
-  def possible_moves(piece_instance)
-    row = piece_instance.row.to_i
-    column = piece_instance.column.to_i
+  def possible_moves
+    # row = @row.to_i
+    # column = @column.to_i
     @moves = Array.new()
-      until row >= 7 || column >= 7
-          row += 1
-          column += 1
-          move = [row, column]
+      until @row >= 7 || @column >= 7
+          @row += 1
+          @column += 1
+          move = [@row, @column]
           # puts "row"
           # puts row
           # puts "column"        

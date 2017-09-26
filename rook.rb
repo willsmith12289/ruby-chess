@@ -5,21 +5,21 @@ class Rook < Piece
   end
 
 #################################
+#
+####
+
+#################################
 # Checks legality of rooks moves
 # Moves horizontally/vertically as many spaces as wants
 # cant jump pieces
 ####
-  def legal(this, coords)
-    row = this.row.to_i
-    column = this.column.to_i
-    @coords_x = coords[0].to_i
-    @coords_y = coords[1].to_i
+  def legal(coords)
+    coords_x = coords[0].to_i
+    coords_y = coords[1].to_i
     # legal if piece remains in same row or column 
-    if row == @coords_x || column == @coords_y
-      occupied = this.occupied?(coords)
-      return occupied
+    if @row.to_i == coords_x || @column.to_i == coords_y
+     attack_or_move(coords)
     else
-
       return false
     end
   end

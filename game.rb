@@ -97,7 +97,7 @@ class Game
     column = gets.chomp.to_i
     @pieces = Piece.all
     @pieces.each do |piece|
-      if piece.row.to_i == row && piece.column.to_i == column
+      if piece.row == row && piece.column == column
         return piece
       end
     end
@@ -111,7 +111,7 @@ class Game
     row = gets.chomp
     puts "choose move column"
     column = gets.chomp
-    @to = [row, column]
+    @to = [row.to_i, column.to_i]
     return @to
   end
 
