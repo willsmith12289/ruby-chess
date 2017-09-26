@@ -10,9 +10,7 @@ class Queen < Piece
 # cant jump
 ####
   def legal(coords)
-    destination_row = coords[0].to_i
-    destination_col = coords[1].to_i
-    if possible_moves.include? [destination_row, destination_col]
+    if possible_moves.include? [coords[0], coords[1]]
       puts "includessss"
       attack_or_move(coords)
     else
@@ -29,10 +27,10 @@ class Queen < Piece
     moves = []
     
     (1..7).each do |x|
-      (@row + x > 7)? x_1 = nil : x_1 = (@row + x).to_i
-      (@row - x < 0)? x_2 = nil : x_2 = (@row - x).to_i
-      (@column + x > 7)? y_1 = nil : y_1 = (@column + x).to_i
-      (@column - x < 0)? y_2 = nil : y_2 = (@column - x).to_i
+      (@row + x > 7)? x_1 = nil : x_1 = @row + x
+      (@row - x < 0)? x_2 = nil : x_2 = @row - x
+      (@column + x > 7)? y_1 = nil : y_1 = @column + x
+      (@column - x < 0)? y_2 = nil : y_2 = @column - x
       
       moves << [x_1, @column]
       moves << [x_2, @column]

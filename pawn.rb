@@ -10,7 +10,7 @@ class Pawn < Piece
 ####
   def legal(coords)
     # How far piece moved from start position to end position
-    distance_row = @row.to_i - coords[0].to_i
+    distance_row = @row - coords[0]
     # if @first =  true call first_move method
     if @first
       # steps for pawns first move
@@ -45,8 +45,8 @@ class Pawn < Piece
 ####
   def legal_column(coords)
     # # of columns moved from start position to end position
-    distance_col = (@column.to_i - coords[1].to_i).abs
-    if @column.to_i == coords[1].to_i #same column
+    distance_col = (@column - coords[1]).abs
+    if @column == coords[1] #same column
       return true
     elsif distance_col == 1
       #checks if its occupied
