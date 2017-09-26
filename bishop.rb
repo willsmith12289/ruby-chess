@@ -8,24 +8,24 @@ class Bishop < Piece
 # Can move diagonally as many spaces as wants
 # cant jump pieces
 ####
-  def legal(this, coords)
-    @coords_x = coords[0].to_i
-    @coords_y = coords[1].to_i
-    start = [this.row.to_i, this.column.to_i]
+  def legal(coords)
+    coords_x = coords[0].to_i
+    coords_y = coords[1].to_i
+    start = [@row.to_i, @column.to_i]
     # possible_moves(this)
     # puts "possible_moves"
-    if this.row.to_i == @coords_x || this.column.to_i == @coords_y
+    if @row.to_i == coords_x || @column.to_i == coords_y
       return false
     else
       piece_location = obstruction?(start, coords)
       if piece_location == coords
         puts "location = coords"
-        occupied = this.occupied?(coords)
+        occupied = self.occupied?(coords)
         return occupied
       # if location of obstruction returned false, move piece
       elsif !piece_location
         puts "false"
-        occupied = this.occupied?(coords)
+        occupied = self.occupied?(coords)
         return occupied
       else
         puts "piece in the way"
@@ -37,14 +37,14 @@ class Bishop < Piece
 #################################
 # loop through possible moves, add to array
 ####
-  def possible_moves(piece_instance)
-    row = piece_instance.row.to_i
-    column = piece_instance.column.to_i
+  def possible_moves
+    # row = @row.to_i
+    # column = @column.to_i
     @moves = Array.new()
-      until row >= 7 || column >= 7
-          row += 1
-          column += 1
-          move = [row, column]
+      until @row >= 7 || @column >= 7
+          @row += 1
+          @column += 1
+          move = [@row, @column]
           # puts "row"
           # puts row
           # puts "column"        
