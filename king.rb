@@ -14,8 +14,8 @@ class King < Piece
     if row_dist > 1 || col_dist > 1
       return false
     else
-      occupied = self.occupied?(coords)
-      return occupied
+      return occupied?(coords)
+      
     end
   end
 

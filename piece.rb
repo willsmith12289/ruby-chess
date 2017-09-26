@@ -114,20 +114,18 @@ end
 # calls obstruction? to determine if one exists and where it is
 # handles cases
 ####
-  def attack_or_move
+  def attack_or_move(coords)
     start = [@row.to_i, @column.to_i]
     # gets location of obstruction
     piece_location = obstruction?(start, coords)
     # if location of obstruction is desired space, attack
     if piece_location == coords
       puts "location = coords"
-      occupied = self.occupied?(coords)
-      return occupied
+      return occupied?(coords)
     # if location of obstruction returned false, move piece
     elsif !piece_location
       puts "false"
-      occupied = self.occupied?(coords)
-      return occupied
+      return occupied?(coords)
     else
       puts "piece in the way"
       return false
