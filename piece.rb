@@ -31,6 +31,7 @@ class Piece
         return false
       end
     else
+      puts "Illegal Move!"
       return false
     end
   end
@@ -44,8 +45,7 @@ class Piece
     @pieces.each do |piece|
       if piece.row == coords[0] && piece.column == coords[1]
         # return result of color_check -> attack -> t/f
-        occupied = color_check(piece)
-        return occupied
+        return color_check(piece)
       end
     end
     # puts "not occupied"
@@ -83,7 +83,6 @@ end
 #################################
 # Check for obstruction in path of piece
 # determine if vertical, horizontal, or diagonal move
-# 
 ####
   def obstruction?(start, destination)
     # returns -1, 1, 0 depending on value of left relative to right
@@ -102,7 +101,7 @@ end
       @pieces.each do |piece|
         if piece.row == x && piece.column == y
           # returns the [row, column] for piece in the way
-          return [piece.row, piece.column]
+          return true#[piece.row, piece.column]
         end
       end
     end
@@ -111,26 +110,32 @@ end
 
 #################################
 # Called from piece instances legal method
-# calls obstruction? to determine if one exists and where it is
-# handles cases
+# handles differing obstruction cases
 ####
   def attack_or_move(coords)
     start = [@row, @column]
     # gets location of obstruction
-    piece_location = obstruction?(start, coords)
-    # if location of obstruction is desired space, attack
-    if piece_location == coords
-      puts "location = coords"
-      return occupied?(coords)
-    # if location of obstruction returned false, move piece
-    elsif !piece_location
-      puts "false"
-      return occupied?(coords)
-    else
+    #piece_location = obstruction?(start, coords)
+    if obstruction?(start, coords)
       puts "piece in the way"
       return false
+    else
+      puts "no obstruction"
+      return occupied?(coords)
     end
-    
+    # # if location of obstruction is desired space, attack
+    # if piece_location == coords
+    #   puts "location = coords"
+    #   return occupied?(coords)
+    # # if no obstruction, move piece
+    # elsif !piece_location
+    #   puts piece_location
+    #   puts "no obstruction"
+    #   return occupied?(coords)
+    # else
+    #   puts "piece in the way"
+    #   return false
+    # end
   end
   private
 

@@ -64,7 +64,6 @@ class Game
         @pieces = Piece.all
         Board.new(@pieces)
       else
-        puts "Illegal Move!"
         who = "illegal"
       end
     end
