@@ -14,9 +14,7 @@ class Game
     build_pieces
     @pieces = Piece.all
     Board.new(@pieces)
-    #b.show
     game_loop
-    # show_single_key while(true)
   end
 
 #################################
@@ -82,7 +80,7 @@ class Game
     elsif who == "illegal"
       who = @prev
     end
-    @prev = who #black
+    @prev = who
     return who
   end
 
@@ -97,7 +95,6 @@ class Game
     @pieces = Piece.all
     @pieces.each do |piece|
       if piece.row == row && piece.column == column
-        puts piece
         return piece
       end
     end
@@ -108,10 +105,10 @@ class Game
 ####
   def choose_square
     puts "choose move row"
-    row = gets.chomp
+    row = gets.chomp.to_i
     puts "choose move column"
-    column = gets.chomp
-    @to = [row.to_i, column.to_i]
+    column = gets.chomp.to_i
+    @to = [row, column]
     return @to
   end
 

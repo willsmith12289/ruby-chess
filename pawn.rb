@@ -48,6 +48,7 @@ class Pawn < Piece
     distance_col = (@column - coords[1]).abs
     # if @column == coords[1] #same column
     #   return true
+    puts distance_col
     if distance_col <= 1
       #checks if its occupied
       return occupied?(coords)
@@ -55,5 +56,4 @@ class Pawn < Piece
       return false
     end
   end
-
 end
