@@ -48,8 +48,6 @@ class Piece
         return color_check(piece)
       end
     end
-    # puts "not occupied"
-    # return false
   end
 
 #################################
@@ -114,28 +112,12 @@ end
 ####
   def attack_or_move(coords)
     start = [@row, @column]
-    # gets location of obstruction
-    #piece_location = obstruction?(start, coords)
     if obstruction?(start, coords)
       puts "piece in the way"
       return false
     else
-      puts "no obstruction"
       return occupied?(coords)
     end
-    # # if location of obstruction is desired space, attack
-    # if piece_location == coords
-    #   puts "location = coords"
-    #   return occupied?(coords)
-    # # if no obstruction, move piece
-    # elsif !piece_location
-    #   puts piece_location
-    #   puts "no obstruction"
-    #   return occupied?(coords)
-    # else
-    #   puts "piece in the way"
-    #   return false
-    # end
   end
   private
 
