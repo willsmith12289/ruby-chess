@@ -44,15 +44,14 @@ class Pawn < Piece
 # Checks if pawns move coords are in proper column or occupied
 ####
   def legal_column(coords)
-    # # of columns moved from start position to end position
+    # of columns moved from start position to end position
     distance_col = (@column - coords[1]).abs
-    if @column == coords[1] #same column
-      return true
-    elsif distance_col == 1
+    # if @column == coords[1] #same column
+    #   return true
+    if distance_col <= 1
       #checks if its occupied
       return occupied?(coords)
     else
-      puts "columns != && not occupied"
       return false
     end
   end
