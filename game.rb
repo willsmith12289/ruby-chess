@@ -18,31 +18,38 @@ class Game
   end
 
 #################################
+# array of all columns or "files" on board
+####
+  def files
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+  end
+
+#################################
 # Builds each piece and assigns it color and starting coords
 ####
   def build_pieces
-    (0..7).each do |i|
-      Pawn.new(1, i, "white") 
+    (1..8).each do |i|
+      Pawn.new(2, i, "white") 
     end
-      Rook.new(0, 0, "white")
-      Knight.new(0, 1, "white")
-      Bishop.new(0, 2, "white")
-      Queen.new(0, 3, "white")
-      King.new(0, 4, "white")
-      Bishop.new(0, 5, "white")
-      Knight.new(0, 6, "white")
-      Rook.new(0, 7, "white")
-    (0..7).each do |i|
-      Pawn.new(6, i, "black") 
+      Rook.new(1, 1, "white")
+      Knight.new(1, 2, "white")
+      Bishop.new(1, 3, "white")
+      Queen.new(1, 4, "white")
+      King.new(1, 5, "white")
+      Bishop.new(1, 6, "white")
+      Knight.new(1, 7, "white")
+      Rook.new(1, 8, "white")
+    (1..8).each do |i|
+      Pawn.new(7, i, "black") 
     end
-      Rook.new(7, 0, "black")
-      Knight.new(7, 1, "black")
-      Bishop.new(7, 2, "black")
-      Queen.new(7, 3, "black")
-      King.new(7, 4, "black")
-      Bishop.new(7, 5, "black")
-      Knight.new(7, 6, "black")
-      Rook.new(7, 7, "black")
+      Rook.new(8, 1, "black")
+      Knight.new(8, 2, "black")
+      Bishop.new(8, 3, "black")
+      Queen.new(8, 4, "black")
+      King.new(8, 5, "black")
+      Bishop.new(8, 6, "black")
+      Knight.new(8, 7, "black")
+      Rook.new(8, 8, "black")
   end
 
 #################################
@@ -56,9 +63,9 @@ class Game
     until win?
       who = turn(who)
       puts "#{ who }'s turn"
-      @piece = choose_piece
-      @move = choose_square
-      if @piece.move(@move, who)
+      piece = choose_piece
+      move_coord = choose_square
+      if piece.move(move_coord, who)
         @pieces = Piece.all
         Board.new(@pieces)
       else
@@ -78,9 +85,9 @@ class Game
     elsif who == "white"
       who = "black"
     elsif who == "illegal"
-      who = @prev
+      who = prev
     end
-    @prev = who
+    prev = who
     return who
   end
 
@@ -91,9 +98,10 @@ class Game
     puts "choose piece row"
     row = gets.chomp.to_i
     puts "choose piece column"
-    column = gets.chomp.to_i
-    @pieces = Piece.all
-    @pieces.each do |piece|
+    col = gets.chomp
+    column = (files.index(col).to_i) + 1
+    pieces = Piece.all
+    pieces.each do |piece|
       if piece.row == row && piece.column == column
         return piece
       end
@@ -107,9 +115,10 @@ class Game
     puts "choose move row"
     row = gets.chomp.to_i
     puts "choose move column"
-    column = gets.chomp.to_i
-    @to = [row, column]
-    return @to
+    col = gets.chomp
+    column = (files.index(col).to_i) + 1
+    to = [row, column]
+    return to
   end
 
 #################################

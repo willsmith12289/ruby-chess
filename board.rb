@@ -23,6 +23,11 @@ class Board
         text.colorize(:background => :red)
     end
 
+    def black(text)
+        # "\e[47m\e[40m#{text}\e[0m"
+        text.colorize(:background => :black)
+    end
+
 #################################
 # Creates an array of row passed from print_board
 # Assigns color to each item based on index being even or odd
@@ -30,8 +35,12 @@ class Board
 ####
     def striped_array(text, start_white)
         remainder = start_white ? 0 : 1 #true : false
-        text.each_with_index do |item,index|
-            if index % 2 == remainder
+        text.each_with_index do |item,index|\
+            if index == 0 || text == ["  ", "A ", "B ", "C ", "D ", "E ", "F ", "G ", "H "]
+              print item
+            # elsif item == 0
+            #   print black(item)
+            elsif index % 2 == remainder
                 print red(item)
             else
                 print blue(item)
@@ -59,14 +68,15 @@ class Board
 ####
     def build_board(pieces)
         chess_board = [
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
-             ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
+             ["  ", "A ", "B ", "C ", "D ", "E ", "F ", "G ", "H "],
+             ["1 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["2 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["3 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["4 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["5 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["6 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["7 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "],
+             ["8 ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
             ]
         pieces.each do |piece|
             x = piece.row.to_i
